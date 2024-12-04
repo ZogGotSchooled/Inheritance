@@ -3,7 +3,7 @@ package Ex1_Animals;
 class Dog extends Animal {
     // numLegs
     public Dog(String s) {
-        super(s);
+        super(s); //calls the parent constructor
         this.numLegs = 4;
     }
 

@@ -8,7 +8,7 @@ class Trout extends Animal {
     }
 
     public void talk() {
-        System.out.println(name + " is a fish. Fish do not speak");
+        System.out.println(name + " is a fish. Fish say blub blub!!!!!!!!!!!!!");
     }
 
 }
