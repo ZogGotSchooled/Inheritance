@@ -18,7 +18,7 @@ class MainStageEvent extends Event {
     }
 
     public void printTech() {
-
+        if(techRequirements.size() == 0) return;
         System.out.println("The tech requirements for " + super.getEventName() + " are: ");
 
         for (String tech : techRequirements) {
@@ -26,5 +26,7 @@ class MainStageEvent extends Event {
         }
         System.out.println();
     }
+
+
 
 }

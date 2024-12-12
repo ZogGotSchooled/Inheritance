@@ -9,6 +9,7 @@ public abstract class Event {
     private String time;
     private String location;
 
+
     public Event(String name, String type) {
         eventID = ++lastEventID;    
         eventName = name;
