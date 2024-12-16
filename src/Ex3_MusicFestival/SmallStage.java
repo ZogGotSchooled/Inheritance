@@ -8,7 +8,6 @@ public class SmallStage extends Event {
         super(name, type);
     }
 
-
     public void giveTip(double tipAmount){
         tips += tipAmount;
     }
