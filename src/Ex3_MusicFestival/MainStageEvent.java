@@ -27,6 +27,17 @@ class MainStageEvent extends Event {
         System.out.println();
     }
 
+    String getTechList(){
+        String s = "";
 
+        for (String tech : techRequirements) {
+            s += tech + " ";
+        }
+        return s;
+    }
+
+    public String toString(){
+        return (getEventName() + getEventType() + getLocation() + getTechList());
+    }
 
 }
