@@ -45,4 +45,6 @@ public abstract class Event {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    abstract void printMe();
 }//end event

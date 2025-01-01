@@ -16,7 +16,9 @@ class NonMusicEvent extends Event {
         this.rent = r;
     }
 
-
+    public void printMe(){
+        System.out.println("not implemented");
+    }
 
 
 
