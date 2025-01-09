@@ -15,4 +15,8 @@ public class NoveltyGame extends NonMusicEvent{
     public String toString(){
         return (getEventName() + getEventType() + getLocation() + sponsorship);
     }
+
+    public void printMe(){
+        System.out.println("Event name "+getEventName() + ", Event type " + getEventType() + ", Location " + getLocation() + ", Sponsored by: " + sponsorship);
+    }
 }

@@ -40,4 +40,8 @@ class MainStageEvent extends Event {
         return (getEventName() + getEventType() + getLocation() + getTechList());
     }
 
+    public void printMe(){
+        System.out.println("Event name "+getEventName() + ", Event type " + getEventType() + ", Location " + getLocation() + ", Required Tech " + getTechList());
+    }
+
 }

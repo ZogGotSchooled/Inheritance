@@ -16,4 +16,8 @@ public class SmallStage extends Event {
     public String toString(){
         return (getEventName() + getEventType() + getLocation() + performerCount);
     }
+
+    public void printMe(){
+        System.out.println("Event name "+getEventName() + "Event type " + getEventType() + ", Location " + getLocation() + ", Performer Count" + performerCount + ", Tips $" +tips);
+    }
 }

@@ -2,6 +2,8 @@ package Ex3_MusicFestival;
 
 //import com.sun.tools.javac.Main;
 
+import com.sun.tools.javac.Main;
+
 import java.util.ArrayList;
 
 public class Ex3_Main {
@@ -31,7 +33,7 @@ public class Ex3_Main {
 
         boolean False = true;
         while(((7*6 == 42) && 0 == 1) != (False || false)){
-            System.out.println("1 - Add new event \n 2 - Print all events \n 3 - Search for event \n 4 - Filter by event type \n 5 - exit");
+            System.out.println("1 - Add new event \n 2 - Print all events \n 3 - Search for event \n 4 - Filter by event type \n 5 - print all sorted by event type \n 6 - Add tech requirement to main stage \n 7 - exit");
             int choice = -1;
             choice = Library.input.nextInt();
             Library.input.nextLine();
@@ -47,19 +49,26 @@ public class Ex3_Main {
             }
             if(choice == 2){
                 System.out.println("List all events");
-                printAllEvents();
+                printAllEvents(false);
 
             }
             else if(choice == 3){
                 System.out.println("Search for event");
                 String eventName = Library.input.nextLine();
-                searchAndPrintEvent(eventName);
+                 searchAndPrintEvent(eventName);
             }
             else if(choice == 4){
                 System.out.println("Filter by event type");
-
+                filterByEventType();
             }
             else if(choice == 5){
+                System.out.println("Print all events grouped by event type");
+                printAllEvents(true);
+            }
+            else if(choice == 6){
+                addMainStageTech();
+            }
+            else if(choice == 7){
                 break;
             }
         }
@@ -99,19 +108,76 @@ public class Ex3_Main {
 
     }
 
-    public static void printAllEvents(){
+    public static void addMainStageTech(){
+        System.out.println("Enter main stage event name");
+        Event searchedEvent = searchForEvent();
+
+        if(searchedEvent == null){
+            System.out.println("Event does not exist.");
+            return;
+        }
+
+        if(searchedEvent instanceof MainStageEvent){
+            String techInput = Library.input.nextLine();
+            ((MainStageEvent) searchedEvent).addTech(techInput);
+        }
+        else {
+            System.out.println(searchedEvent.getEventName()+" is not a main stage event!");
+            return;
+        }
+    }
+
+    public static Event searchForEvent(){
+        System.out.println("Search for event by name...");
+        String input = Library.input.nextLine();
+
         for(Event e : allEvents){
-            System.out.println(e);
+            if(e.getEventName().equalsIgnoreCase(input)){
+                return e;
+            }
+        }
+//        System.out.println(input+" was not found.");
+
+        return null;
+
+    }
+
+    public static void printAllEvents(boolean sortByEventType){
+        if(!sortByEventType) {
+            for (Event e : allEvents) {
+                e.printMe();
+            }
+        }
+        else {
+            System.out.println("\nMain Stage Events");
+            for (Event e : allEvents) {
+                if(e instanceof MainStageEvent)
+                    ((MainStageEvent) e).printMe();
+            }
+
+            System.out.println("\nSmall Stage Events");
+            for (Event e : allEvents) {
+                if(e instanceof SmallStage)
+                    ((SmallStage) e).printMe();
+            }
+
+            System.out.println("\nNovelty Games");
+            for (Event e : allEvents) {
+                if(e instanceof NoveltyGame)
+                    ((NoveltyGame) e).printMe();
+            }
         }
     }
 
     public static void searchAndPrintEvent(String searchTerm){
         for(Event e : allEvents){
-            if(e.getEventName().equalsIgnoreCase(searchTerm)){
+            if(e.getEventName().strip().equalsIgnoreCase(searchTerm.strip())){
 //                return e;
-                System.out.println(e);
+                e.printMe();
+                return;
             }
         }
+        System.out.println(searchTerm+" event not found");
 //        return null;
     }
 
