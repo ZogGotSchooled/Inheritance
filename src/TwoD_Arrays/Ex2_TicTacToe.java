@@ -1,5 +1,8 @@
 package TwoD_Arrays;
 
+
+import Utilities.Library;
+
 public class Ex2_TicTacToe {
     public static void run() {
 
@@ -10,31 +13,40 @@ public class Ex2_TicTacToe {
         print2DString(tictactoe);
         System.out.println();
 
-        tictactoe[0][1] = "X";
-        print2DString(tictactoe);
-        System.out.println();
-        System.out.println("The winner is " + checkWinner(tictactoe));
-        System.out.println();
+//        tictactoe[0][1] = "X";
+//        tictactoe[1][0] = "O";
+//        tictactoe[1][1] = "X";
+//        tictactoe[2][1] = "X";
+//        print2DString(tictactoe);
+//        System.out.println();
+//        System.out.println("The winner is " + checkWinner(tictactoe));
+//        System.out.println();
 
         int moves = 1;
-//        //Two Player version
-//        while( true ){
-//            System.out.println("Enter your row");
-//            int row = Library.input.nextInt();
-//            System.out.println("Enter your column");
-//            int col = Library.input.nextInt();
-
-
-//            moves++;
-//            print2DString(tictactoe);
-//            String winner = checkWinner(tictactoe);
-//            System.out.println("The winner is " + winner);
-//            if(!winner.equals("no one yet!") || moves == 9){
-//                break;
-//            }
-
-//
-//        }//while
+        //Two Player version
+        //AI Version - human goes first and chooses O
+        while( true ){
+            System.out.println("Enter your row");
+            int row = Library.input.nextInt();
+            System.out.println("Enter your column");
+            int col = Library.input.nextInt();
+            tictactoe[row][col] = "O";
+            moves++;
+            print2DString(tictactoe);
+            String winner = checkWinner(tictactoe);
+            System.out.println("The winner is " + winner);
+            if(!winner.equals("no one yet!") || moves == 9){
+                break;
+            }
+            getMove(tictactoe);
+            moves++;
+            print2DString(tictactoe);
+            winner = checkWinner(tictactoe);
+            System.out.println("The winner is " + winner);
+            if(!winner.equals("no one yet!") || moves == 9){
+                break;
+            }
+        }//while
 
 
 
@@ -51,6 +63,22 @@ public class Ex2_TicTacToe {
                 return tictactoe[r][0];
             }
         }
+
+        //check columns
+        for (int c = 0; c < tictactoe.length; c++) {
+            if (!tictactoe[0][c].equals(" ") && tictactoe[0][c].equals(tictactoe[1][c]) && tictactoe[0][c].equals(tictactoe[2][c])) {
+                return tictactoe[0][c];
+            }
+        }
+
+        if (!tictactoe[0][0].equals(" ") && tictactoe[0][0].equals(tictactoe[1][1]) && tictactoe[0][0].equals(tictactoe[2][2])) {
+            return tictactoe[0][0];
+        }
+
+        if (!tictactoe[0][2].equals(" ") && tictactoe[0][2].equals(tictactoe[1][1]) && tictactoe[0][2].equals(tictactoe[2][0])) {
+            return tictactoe[0][2];
+        }
+
         return "no one yet!";
     }
 
@@ -71,4 +99,27 @@ public class Ex2_TicTacToe {
             }
         }
     }// end
+
+    public static void getMove(String[][] tictactoe){
+        if(tictactoe[1][1].equals(" ")){
+            tictactoe[1][1] = "X";
+        }
+        else if(tictactoe[0][0].equals(" ")){
+            tictactoe[0][0] = "X";
+        }
+        else if(tictactoe[0][2].equals(" ")){
+            tictactoe[0][2] = "X";
+        }
+        else if(tictactoe[2][0].equals(" ")){
+            tictactoe[2][0] = "X";
+        }
+        else if(tictactoe[2][2].equals(" ")){
+            tictactoe[2][2] = "X";
+        }
+    }
+
+
+
+
+
 }

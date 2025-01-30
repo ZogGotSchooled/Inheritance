@@ -12,6 +12,10 @@ public class NoveltyGame extends NonMusicEvent{
         sponsorshipHits += signupAmount;
     }
 
+    public String getSponsorhip()
+    {
+        return sponsorship;
+    }
     public String toString(){
         return (getEventName() + getEventType() + getLocation() + sponsorship);
     }

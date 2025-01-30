@@ -120,6 +120,7 @@ public class Ex3_Main {
         if(searchedEvent instanceof MainStageEvent){
             String techInput = Library.input.nextLine();
             ((MainStageEvent) searchedEvent).addTech(techInput);
+//            System.out.println((MainStageEvent) searchedEvent).get);
         }
         else {
             System.out.println(searchedEvent.getEventName()+" is not a main stage event!");

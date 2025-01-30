@@ -13,6 +13,11 @@ public class SmallStage extends Event {
         tips += tipAmount;
     }
 
+    public double getTips( ){
+        return tips;
+    }
+
+
     public String toString(){
         return (getEventName() + getEventType() + getLocation() + performerCount);
     }
