@@ -1,10 +1,7 @@
 import Ex1_Animals.Ex1_Main;
 import Ex2_Restaurant.Ex2_Main;
 import Ex3_MusicFestival.Ex3_Main;
-import TwoD_Arrays.As1_Bingo;
-import TwoD_Arrays.Ex1_Golf;
-import TwoD_Arrays.Ex2_TicTacToe;
-import TwoD_Arrays.Ex3_Sudoku;
+import TwoD_Arrays.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,8 +12,10 @@ public class Main {
 //        Ex2_TicTacToe.run();
 
 //        Ex3_Sudoku.run();
-        As1_Bingo.run();
+//        As1_Bingo.run();
+        As2_vignere.run();
     }
+
 
 
 
