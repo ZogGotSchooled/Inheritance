@@ -14,6 +14,8 @@ public class As2_vignere {
         char[][] vigenere = createVSquare(alphabet);
         printSquare(vigenere);
         String decrypted = decrypt(alphabet,"OGOGTSEYNTVCKA", "SCONA");
+//        String decrypted = decrypt(alphabet,"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "SCONA");
+
         System.out.println(decrypted);
     }
 
@@ -45,7 +47,7 @@ public class As2_vignere {
 
     public static void printSquare(char[][] square) {
 
-        System.out.print("   ");
+        System.out.print("     ");
         //Topside headers
         for (int r = 0; r < square.length; r++){
             System.out.print(GREEN+square[r][0]+RESET+"  ");
@@ -54,7 +56,9 @@ public class As2_vignere {
 
         //main square
         for (int r = 0; r < square.length; r++) {
+            System.out.print(r+" "); //left side (per row) headers
             System.out.print(GREEN+square[r][0]+RESET+"  "); //left side (per row) headers
+
             for (int c = 0; c < square[r].length; c++) {
 //                if(Math.abs(square[i][j]) < 10) System.out.print(" ");
                 System.out.print(square[r][c] + "  ");
@@ -68,20 +72,48 @@ public class As2_vignere {
         String decrpytedString = "";
 
         for (int i = 0; i < cypherText.length(); i++) {
-            int column = headerNumberFromChar(alphabet, cypherText.charAt(i));
-            int row = headerNumberFromChar(alphabet, key.charAt(i%key.length()));
-            System.out.print("Chars: "+key.charAt(i%key.length()) + " and "+ cypherText.charAt(i)+", result : "+getVAt(alphabet, row, column)+" ");
+//            int column = indexOfChar(alphabet, cypherText.charAt(i));
+//            int row = indexOfChar(alphabet, key.charAt(i%key.length()));
+//            System.out.print("Chars: "+key.charAt(i%key.length()) + " and "+ cypherText.charAt(i)+", result : "+getVAt(alphabet, row, column)+" ");
 
-            System.out.println(" row "+row+" column "+column);
-            decrpytedString += getVAt(alphabet, row, column);
+//            System.out.println(" row "+row+" column "+column);
+
+//            decrpytedString += getVAt(alphabet, row, column);
+
+//            decrpytedString += getColFromRowAndLetter(alphabet, key.charAt(i%key.length()), cypherText.charAt(i));
+            decrpytedString += getColFromRowAndLetter(alphabet, key.charAt(i%key.length()), cypherText.charAt(i));
         }
+
 
         return decrpytedString;
     }
 
+    //returns which column corresponds with find at row
+    public static char getColFromRowAndLetter(char[] alphabet, char key, char find){
+//        System.out.println("key char "+key+", find "+find+" in that row");
 
 
-    public static int headerNumberFromChar(char[] alphabet, char find){
+        int standardIndexOfChar = indexOfChar(alphabet, find);
+        int indexOfKey = indexOfChar(alphabet, key);
+        System.out.println("key char "+indexOfKey+key+", find "+standardIndexOfChar+find+" in that row");
+
+
+        System.out.println("standard index of "+find+" is "+standardIndexOfChar);
+        int indexOfChar = (26-(standardIndexOfChar+indexOfKey)%26);
+
+        System.out.println("Index of char "+indexOfChar);
+
+        char decrypted = loopedArrayGet(alphabet, indexOfChar);
+        System.out.println(decrypted);
+
+//        System.out.println("vsquare index of "+find+" is "+indexOfChar);
+
+//        System.out.println("Index of "+find+" in row "+key+" is "+indexOfChar);
+        System.out.println();
+        return decrypted;
+    }
+
+    public static int indexOfChar(char[] alphabet, char find){
         for (int i = 0; i < alphabet.length; i++) {
             if(find == alphabet[i]){
                 return i;
