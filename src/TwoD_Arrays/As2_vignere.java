@@ -1,6 +1,6 @@
 package TwoD_Arrays;
 
-import com.sun.security.jgss.GSSUtil;
+
 
 public class As2_vignere {
 
@@ -8,15 +8,32 @@ public class As2_vignere {
     public static final String GREEN = "\033[0;32m";
     public static final String RESET = "\033[0m";
 
+    static String encryptionkey = "SCONA";
+
     public static void run() {
         char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K',
                 'L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         char[][] vigenere = createVSquare(alphabet);
         printSquare(vigenere);
-        String decrypted = decrypt(alphabet,"OGOGTSEYNTVCKA", "SCONA");
-//        String decrypted = decrypt(alphabet,"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "SCONA");
 
-        System.out.println(decrypted);
+
+        while(true){
+
+
+            System.out.println("What do you want to decrypt? (decryption keyword: "+encryptionkey+", enter 'c' to change it)");
+            String decryptMessage = Utilities.Library.input.nextLine().toUpperCase();
+            if(decryptMessage.equals("C")){
+                System.out.println("What do you want the key to be?");
+                encryptionkey = Utilities.Library.input.nextLine().toUpperCase();
+            }
+            else {
+
+            String decrypted = decrypt(alphabet,decryptMessage,encryptionkey);
+
+            System.out.println(decrypted);}
+        }
+
+
     }
 
 
@@ -95,21 +112,27 @@ public class As2_vignere {
 
         int standardIndexOfChar = indexOfChar(alphabet, find);
         int indexOfKey = indexOfChar(alphabet, key);
-        System.out.println("key char "+indexOfKey+key+", find "+standardIndexOfChar+find+" in that row");
+//        System.out.println("key char "+indexOfKey+key+", find "+standardIndexOfChar+find+" in that row");
 
 
-        System.out.println("standard index of "+find+" is "+standardIndexOfChar);
-        int indexOfChar = (26-(standardIndexOfChar+indexOfKey)%26);
+//        System.out.println("standard index of "+find+" is "+standardIndexOfChar);
 
-        System.out.println("Index of char "+indexOfChar);
+//        char letter = message.charAt(i);
+//        decryptMessage += (char) ((letter - key.charAt(j) + 26) % 26 + 65);
+//        j = ++j % key.length();
+
+
+        int indexOfChar = ((standardIndexOfChar-indexOfKey + 26)%26);
+
+//        System.out.println("Index of char "+indexOfChar);
 
         char decrypted = loopedArrayGet(alphabet, indexOfChar);
-        System.out.println(decrypted);
+//        System.out.println(decrypted);
 
 //        System.out.println("vsquare index of "+find+" is "+indexOfChar);
 
 //        System.out.println("Index of "+find+" in row "+key+" is "+indexOfChar);
-        System.out.println();
+//        System.out.println();
         return decrypted;
     }
 
