@@ -24,6 +24,11 @@ public class As1_Main {
                 "Client3:    diskette disk",
                 "Router1: missing packet",
                 "PC4: power surge detected",
+                "PC5: Error on disk3",
+                "Client4: Diskette",
+                "PC2:DISK",
+                "Client2:diskydiskerton",
+                "Thug2:dis"
         };
 
         ArrayList<As1_Message> allMessages = batchCreateMessages(rawMessages);
@@ -34,7 +39,13 @@ public class As1_Main {
             System.out.println("2. Print All Messages");
             System.out.println("3. Scan for Error Messages");
             System.out.println("4. EXIT");
-            int option = input.nextInt();
+            int option = 0;
+            try {
+                option = input.nextInt();
+            }
+            catch (Exception e){
+                System.out.println("Incorrect input type (needs integer number)");
+            }
             input.nextLine();
             System.out.println();
 
@@ -45,8 +56,21 @@ public class As1_Main {
                 System.out.println(newMessage);
             } else if (option == 2) {
 
-            } else if (option == 3) {
+                System.out.println("Security Message\tMachine ID \tMachine Type  ");
 
+                for(As1_Message m : allMessages){
+//                    System.out.println(m.toString());
+                    m.formatPrint();
+                }
+
+            } else if (option == 3) {
+                String userInput = Library.input.nextLine();
+                fuzzySearch(allMessages,userInput);
+
+//                if(foundMessage != null){
+//                    System.out.println("Warning found");
+//                    foundMessage.formatPrint();
+//                }
             } else if (option == 4) {
                 System.out.println("Logging out. Good Bye.");        //while
                 break;
@@ -63,6 +87,19 @@ public class As1_Main {
             temp.add(new As1_Message(mStr));
         }
         return temp;
+    }
+
+    public static void fuzzySearch(ArrayList<As1_Message> messages, String searchTerm){
+//        As1_Message found = null;
+        for(As1_Message m : messages){
+            if(m.ScanWarning(searchTerm)){
+//                System.out.println(searchTerm);
+                m.formatPrint();
+            }
+
+        }
+//        return null;
+//        return found;
     }
 
 }//class
